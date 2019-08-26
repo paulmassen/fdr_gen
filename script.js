@@ -1,8 +1,9 @@
 
+
 function refresh(){
 var data = "";
 var textarea = document.getElementById("jsonorfeo");
-console.log(document.getElementById("jsonorfeo").value);
+
 
 var data = JSON.parse(textarea.value);
 var spacer = " - ";
@@ -24,8 +25,9 @@ function addZero(i) {
   return i;
 }
 // START PLANNING
+var eventtype;
 for (i = 0; i < data.periods.length; i++) {
-  
+  var eventtype = undefined;
   var heureStart = new Date(data.periods[i].start_datetime);
   var heureEnd = new Date(data.periods[i].end_datetime);
   heureStarth = addZero(heureStart.getHours());
@@ -37,10 +39,22 @@ for (i = 0; i < data.periods.length; i++) {
   var options = { weekday: 'short', year: 'numeric', month: 'short', day: '2-digit'};
   var jour = new Date(data.periods[i].start_datetime);
   jour = jour.toLocaleDateString('fr-FR', options);
-  
-  myrow = '<tr><td>' + jour + '</td><td>' + heureStart + '<br>' + heureEnd + '</td><td>' +  data.periods[i].notes + '</td><td>' + data.periods[i].title + '</td></tr>'; 
+  var eventtype = data.periods[i].period_type;
+
+if (eventtype == "other"){
+
+  rowcolor = '<tr>';
+  } else if (eventtype == "concert") {
+
+ rowcolor = '<tr style="background-color: #00800070">';
+};
+
+if (data.periods[i].to_be_confirmed == true) { 
+rowcolor = '<tr style="color: red;">';
+};
+  myrow = rowcolor + '<td>' + jour + '</td><td>' + heureStart + '<br>' + heureEnd + '</td><td>' + data.periods[i].period_type + '</td><td>' +  data.periods[i].notes + '</td><td>' + data.periods[i].title + '</td></tr>'; 
   document.getElementById("planning").insertAdjacentHTML('beforeend', myrow);
- 
+ eventtype = undefined;
 }; 
 // END PLANNING
 // START PROGRAMME
@@ -60,7 +74,7 @@ for (i=0; i < data.contacts.length; i++) {
   for (x=0; x < data.contacts[i].contact_infos.length; x++){
     if(typeof data.contacts[i].contact_infos[x].value !== "undefined")
 {
-  console.log(data.contacts[i].contact_infos[x].type);
+
   if(data.contacts[i].contact_infos[x].type == "mail") {
   var contactmedium = '<span class="fa fa-envelope"></span><span class="value"> ' + data.contacts[i].contact_infos[x].value + '</span>';
 };
@@ -69,7 +83,7 @@ for (i=0; i < data.contacts.length; i++) {
   };
 
 };   
-  console.log(contactmedium);
+
   contactlist = contactmedium + linebreak;
   document.getElementById("contactlist").insertAdjacentHTML('beforeend', contactlist);
 };
