@@ -1,0 +1,28 @@
+.center {
+  text-align: center;
+}
+.jthelen {
+ font-family: 'Futurist Fixed-width';
+}
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+}
+tr:nth-child(even){background-color: #f2f2f2;}
+table {
+  border: 1px solid black;
+  width: 100%;
+}
+#planningnotes {
+  margin-top: 20px;
+}
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}

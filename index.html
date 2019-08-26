@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Générateur de feuille de routes</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css'>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<h1 class="jthelen center">Agence Artistique <br> Jacques Thelen</h1>
+<h1 contenteditable="true" id="mytitle" class="center"></h1>
+<hr>
+<div class="row">
+  <div class="column">
+    <h3 contenteditable="true"> Programme</h3>
+    <p contenteditable="true" id="prog"></p>
+    <p  contenteditable="true" id="artists"></p>
+    <h3 contenteditable="true" >Hôtel</h3>
+    <p id="hotel" contenteditable="true"></p>
+  </div>
+  <div id="contacts" class="column" contenteditable="true">
+    <h3 contenteditable="true">Organisateur</h3>
+    <p id="org"></p>
+    <h3>Contacts</h3>
+    <p id="contactlist"></p>
+
+  </div>
+  
+</div>
+<hr>
+<table contenteditable="true"><tbody id="planning">
+  <th>Jour</th>
+  <th>Heure</th>
+  <th>Programme</th>
+  <th>Lieu / Notes</th>
+  </tbody></table>
+<div id="planningnotes"></div>
+<hr>
+<textarea class="no-print" id="jsonorfeo" name="orfeojson"></textarea>
+ <button onclick="refresh()" class="no-print">Afficher</button> 
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
